@@ -41,29 +41,46 @@ connection.connect(function(err) {
   });  
 
 app.get('/', (req,res) =>{
-          res.render('login');
+          res.render('index');
 });
 
-app.post('/', (req,res) =>{
-  let {username, password} = req.body;
-  console.log(username,password);
-  if (username && password) {
-    const sql = "SELECT * FROM admin WHERE username = '"+ username +"' AND password = '"+ password +"'";
-    connection.query(sql, function(error, results, fields) {
-			if (results.length > 0) {
-				req.session.loggedin = true;
-        req.session.username = username;
-        res.redirect('/dashboard');
-			} else {
-				res.send('Incorrect Username and/or Password!');
-			}			
-			res.end();
-    });
-	} else {
-		res.send('Please enter Username and Password!');
-		res.end();
-	}
+app.get('/admin-login', (req,res) =>{
+  res.render('login');
 });
+
+app.post('/admin-login', (req,res) =>{
+  let {username, password} = req.body;
+  connection.query('SELECT * FROM admin WHERE username = ?',[username], function (error, results, fields) {
+    if (error) {
+        res.json({
+          status:false,
+          message:'there are some error with query'
+          })
+    }else{
+      if(results.length >0){
+          bcrypt.compare(password, results[0].password, function(err, ress) {
+              if(!ress){
+                  res.json({
+                    status:false,                  
+                    message:"username and password does not match"
+                  });
+              }else{   
+                req.session.loggedin = true;
+                req.session.username = username;
+                res.redirect('/dashboard');
+              }
+          });         
+      }
+      else{
+        res.json({
+            status:false,
+          message:"Username does not exists"
+        });
+      }
+    }
+  });
+});
+
 
 app.get('/dashboard', (req,res) =>{
       isloggedin(req,res,'dashboard');
@@ -85,7 +102,7 @@ isloggedin = (req,res,page) => {
   if (req.session.loggedin) {
     res.render(page);
 } else {
-  res.redirect('/');
+  res.redirect('/admin-login');
 }
 };
 

@@ -1,0 +1,37 @@
+<%- include("partials/header.ejs") %>
+
+<style>
+        .section-a{
+            background: url('../../public/admin1.jpg');
+            background-size: cover;
+            height: 300px;
+            box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+            border-radius: 15px;
+        }
+        .section-b{            
+            background: url('../../public/student.jpg');
+            background-size: cover;
+            height: 300px;
+            box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+            border-radius: 15px;
+        }
+        a{
+            font-size: 35px;
+        }
+        a:hover{
+            text-decoration-line: none;
+            color:#cab436;
+            transition: 0.3s;
+        }
+</style>
+        <div class="row mt-5 mx-2 animated fadeIn d-flex justify-content-around">
+                <div class="mb-2 col-md-6 section-a d-flex justify-content-center ">
+                        <a class="text-center font-weight-bold" href="/admin-login">Admin Login</a>
+                </div>              
+        </div>
+        <div class="row my-5 mx-2 animated fadeIn delay-1s d-flex justify-content-around">
+                <div class="col-md-6 section-b d-flex justify-content-center">
+                <a class="text-center font-weight-bold" href="/take-quiz">Want to test yourself? Take a quiz!</a>           
+                </div>                    
+        </div>
+<%- include("partials/footer.ejs") %>

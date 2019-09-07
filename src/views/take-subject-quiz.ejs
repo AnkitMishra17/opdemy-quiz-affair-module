@@ -3,7 +3,7 @@
 
 <style>
    .banner-bg{
-    background-image: url('../../public/take-quiz1.png');
+    background-image: url('../../public/work1.jpg');
     height: 450px;
     background-attachment: fixed;
     background-size: cover;
@@ -12,11 +12,20 @@
 .questions{
    box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
 }
+@media only screen and (max-width: 768px){
+     .banner-bg{
+        background-image: url('../../public/work1.jpg');
+        height: 250px;
+        background-attachment: fixed;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}
 </style>
 
 <section class="banner-bg">
 </section>
-<h1 class="text-center mt-5">Take Subject Quiz</h1>
+<h1 class="text-center mt-5">Take Subject Quiz <i class="em em-smiley"></i></h1>
 <div class="container d-flex flex-column justify-content-center p-5">
 <div class="row">
     <% for(let i = 0; i < data.length; i++) {  %>
@@ -24,9 +33,9 @@
             <div class="card questions border-primary mb-3">
                   <h3 class="card-header bg-primary text-white">question <%= i+1%></h3>
                   <div class="card-body">
-                    <p class="card-text font-weight-bold" style="font-size: 24px"><%= data[i].question %></p>
+                    <p class="card-text font-weight-bold" style="font-size: 20px"><%= data[i].question %></p>
                   </div>
-                  <ul class="list-group list-group-flush font-weight-bold" style="font-size: 16px">
+                  <ul class="list-group list-group-flush font-weight-bold" style="font-size: 14px">
                     <li class="list-group-item">(A) <%= data[i].optiona %></li>
                     <li class="list-group-item">(B) <%= data[i].optionb %></li>
                     <li class="list-group-item">(C) <%= data[i].optionc %></li>
@@ -37,16 +46,16 @@
        <% } %>
       </div> 
        <br>
+       
        <button type="submit" id="submit" class="btn btn-success mb-5 w-50">View Answers</button>
-       <!-- <div id="result" style="display:none;"></div> -->
-       <div class="table-responsive" >
-         <table class="table table-hover w-50 mt-5" id="result" style="display:none;">
-            <tr class="table-success">
-                  <th scope="row">Correct Answers</th>
-            </tr>
-         </table>
-       </div>
-</div>       
+
+       <div class="card questions border-primary mb-3" id="card" style="display:none;">
+          <h3 class="card-header bg-primary text-white">Correct Answers</h3>
+          <ul class="list-group list-group-flush font-weight-bold" id="result" style="font-size: 17px">
+          
+          </ul>
+        </div>  
+</div>     
 	
 <script>
   $(document).ready(function(){  
@@ -61,22 +70,22 @@
   optionc = optionc.toString().split(',');
   optiond = optiond.toString().split(',');
   $("#submit").one('click',(e)=>{
-    $("#result").fadeIn();
+    $("#card").fadeIn();
       for(let i = 0; i < answerkey.length; i++ ){
             var x = answerkey[i];
             let choices = $('.choices');
               switch (x) {
                 case "A":
-                   $("#result").append(`<tr class="table-success"><td>${optiona[i]}</td></tr>`);
+                   $("#result").append(`<li class="list-group-item">${i+1}) ${optiona[i]}</li>`);
                    break;
                 case "B":
-                   $("#result").append(`<tr class="table-success"><td>${optionb[i]}</td></tr>`);
+                   $("#result").append(`<li class="list-group-item">${i+1}) ${optionb[i]}</li>`);
                    break;
                 case "C":
-                   $("#result").append(`<tr class="table-success"><td>${optionc[i]}</td></tr>`);
+                   $("#result").append(`<li class="list-group-item">${i+1}) ${optionc[i]}</li>`);
                    break;
                 case "D":
-                   $("#result").append(`<tr class="table-success"><td>${optiond[i]}</td></tr>`);
+                   $("#result").append(`<li class="list-group-item">${i+1}) ${optiond[i]}</li>`);
                    break;
             }
       }
