@@ -6,13 +6,14 @@
     background: url('../../public/quiz2.png') center center no-repeat;
   }
 </style>
+    <a href="/admin-login/logout" class="btn btn-danger">logout</a>
 <div class="box1">
   <div class="wrapper animated bounceInDown">
     <div class="company-info title-container">
           <h1 class="title-container__title display-4">Opdemy</h1>
           <h3 class="title-container__subtitle">The Open Academy.</h3>
         </div>
-<form action="/add-current-affairs" method="POST" class="form-container">
+<form action="/admin-login/dashboard/add-current-affairs" method="POST" class="form-container">
   
        <h1 align="center" class="mb-3 text-white">Post current affairs questions</h1>  
        <input type="text" name="question" placeholder="Enter question..." value="" class="text-white" required>
