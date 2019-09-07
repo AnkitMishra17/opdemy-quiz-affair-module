@@ -1,6 +1,37 @@
 <%- include("partials/header.ejs") %>
-
-    <a href="/add-quiz">Add Quiz</a>
-    <a href="/add-current-affairs">Add current affairs</a>
-
+    <style>
+            .section-a{
+                background: url('../../public/quiz1.png');
+                background-size: cover;
+                height: 300px;
+                box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+                border-radius: 15px;
+            }
+            .section-b{            
+                background: url('../../public/quiz2.png');
+                background-size: cover;
+                height: 300px;
+                box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+                border-radius: 15px;
+            }
+            a{
+                font-size: 35px;
+            }
+            a:hover{
+                text-decoration-line: none;
+                color:#96e6a1;
+                transition: 0.3s;
+            }
+    </style>
+    <a href="/logout" class="btn btn-danger">logout</a>
+            <div class="row mt-5 mx-2 d-flex justify-content-around">
+                    <div class="mb-2 col-md-6 section-a d-flex justify-content-center ">
+                            <a class="text-center font-weight-bold" href="/add-quiz">Add Quiz</a>
+                    </div>              
+            </div>
+            <div class="row my-5 mx-2 d-flex justify-content-around">
+                    <div class="col-md-6 section-b d-flex justify-content-center">
+                            <a class="text-center font-weight-bold" href="/add-current-affairs">Add current affairs</a>           
+                    </div>                    
+            </div>
 <%- include("partials/footer.ejs") %>

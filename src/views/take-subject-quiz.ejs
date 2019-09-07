@@ -1,0 +1,87 @@
+<%- include("partials/header.ejs") %>
+<link rel="stylesheet" href="../../public/formstyles.css">
+
+<style>
+   .banner-bg{
+    background-image: url('../../public/take-quiz1.png');
+    height: 450px;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.questions{
+   box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+}
+</style>
+
+<section class="banner-bg">
+</section>
+<h1 class="text-center mt-5">Take Subject Quiz</h1>
+<div class="container d-flex flex-column justify-content-center p-5">
+<div class="row">
+    <% for(let i = 0; i < data.length; i++) {  %>
+      <div class="col-md-6 ">
+            <div class="card questions border-primary mb-3">
+                  <h3 class="card-header bg-primary text-white">question <%= i+1%></h3>
+                  <div class="card-body">
+                    <p class="card-text font-weight-bold" style="font-size: 24px"><%= data[i].question %></p>
+                  </div>
+                  <ul class="list-group list-group-flush font-weight-bold" style="font-size: 16px">
+                    <li class="list-group-item">(A) <%= data[i].optiona %></li>
+                    <li class="list-group-item">(B) <%= data[i].optionb %></li>
+                    <li class="list-group-item">(C) <%= data[i].optionc %></li>
+                    <li class="list-group-item">(D) <%= data[i].optiond %></li>
+                  </ul>
+            </div>
+      </div>
+       <% } %>
+      </div> 
+       <br>
+       <button type="submit" id="submit" class="btn btn-success mb-5 w-50">View Answers</button>
+       <!-- <div id="result" style="display:none;"></div> -->
+       <div class="table-responsive" >
+         <table class="table table-hover w-50 mt-5" id="result" style="display:none;">
+            <tr class="table-success">
+                  <th scope="row">Correct Answers</th>
+            </tr>
+         </table>
+       </div>
+</div>       
+	
+<script>
+  $(document).ready(function(){  
+  answerkey = "<%= answers %>";
+  optiona = "<%= optiona %>";
+  optionb = "<%= optionb %>";
+  optionc = "<%= optionc %>";
+  optiond = "<%= optiond %>";
+  answerkey = answerkey.toString().split(',');
+  optiona = optiona.toString().split(',');
+  optionb = optionb.toString().split(',');
+  optionc = optionc.toString().split(',');
+  optiond = optiond.toString().split(',');
+  $("#submit").one('click',(e)=>{
+    $("#result").fadeIn();
+      for(let i = 0; i < answerkey.length; i++ ){
+            var x = answerkey[i];
+            let choices = $('.choices');
+              switch (x) {
+                case "A":
+                   $("#result").append(`<tr class="table-success"><td>${optiona[i]}</td></tr>`);
+                   break;
+                case "B":
+                   $("#result").append(`<tr class="table-success"><td>${optionb[i]}</td></tr>`);
+                   break;
+                case "C":
+                   $("#result").append(`<tr class="table-success"><td>${optionc[i]}</td></tr>`);
+                   break;
+                case "D":
+                   $("#result").append(`<tr class="table-success"><td>${optiond[i]}</td></tr>`);
+                   break;
+            }
+      }
+    $("#submit").prop('disabled',true);
+  }); 
+});
+</script>
+<%- include("partials/footer.ejs") %>

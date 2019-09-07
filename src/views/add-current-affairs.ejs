@@ -1,18 +1,41 @@
 <%- include("partials/header.ejs") %>
 <link rel="stylesheet" href="../../public/formstyles.css">
 
-        <h1>Add current affairs</h1>
-
-        <form action="/add-current-affairs" method="POST" class="">  
-                <input type="text" name="title" placeholder="Enter title..." value="" class="text-dark" required>
-                <br>
-                <div class="custom-file w-50">
-                                <input type="file" class="custom-file-input " id="customFile">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
-                </div>
-                <textarea name="content" class="w-75" id="" cols="40" placeholder="Write content..." rows="20"></textarea>
-                <br>
-                <button type="submit" id="submit" class="mt-3 w-50">Add affair</button>                
-         </form>
-
+<style>
+  .title-container{
+    background: url('../../public/quiz2.png') center center no-repeat;
+  }
+</style>
+<div class="box1">
+  <div class="wrapper animated bounceInDown">
+    <div class="company-info title-container">
+          <h1 class="title-container__title display-4">Opdemy</h1>
+          <h3 class="title-container__subtitle">The Open Academy.</h3>
+        </div>
+<form action="/add-current-affairs" method="POST" class="form-container">
+  
+       <h1 align="center" class="mb-3 text-white">Post current affairs questions</h1>  
+       <input type="text" name="question" placeholder="Enter question..." value="" class="text-white" required>
+       <input type="text" name="optionA" placeholder="option A" value="" class="text-white" required>
+       <input type="text" name="optionB" placeholder="option B" value="" class="text-white" required>
+       <input type="text" name="optionC" placeholder="option C" value="" class="text-white" required>
+       <input type="text" name="optionD" placeholder="option D" value="" class="text-white" required>
+       <select id="select" class="text-white" name="answer" required>
+        <option value="" class="text-primary" disabled selected>Select correct option</option>
+        <option value="A" class="text-primary">A</option>
+        <option value="B" class="text-primary">B</option>
+        <option value="C" class="text-primary">C</option>
+        <option value="D" class="text-primary">D</option>
+      </select>
+       <button type="submit" id="submit" class="mt-3 w-50">Add question</button>                
+</form>
+  </div>
+</div>
+<script>
+    // $('#submit').click((e)=> {
+    //   e.preventDefault();
+    //   console.log($('#select').val());
+      
+    // });
+</script>
 <%- include("partials/footer.ejs") %>

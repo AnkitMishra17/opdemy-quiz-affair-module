@@ -1,53 +1,36 @@
 <%- include("partials/header.ejs") %>
-
-<style>
-::placeholder{
-  color: #696969;
-  font-family: 'livvic',sans-serif;
-}
-</style>
-<h1>Add Quiz</h1>
-    <% for(let i = 0; i < data.length; i++) {  %>
-        
-       <p class="text-dark" style="font-size: 20px;"><%= data[i].question %></p>
-       <input type="radio" class="radiobtn" name="question<%= i+1 %>" value="A" class="text-dark" > <input class="choices" type="text" value="<%= data[i].optiona %>" disabled>
-       <input type="radio" class="radiobtn" name="question<%= i+1 %>" value="B" class="text-dark" > <input class="choices" type="text" value="<%= data[i].optionb %>" disabled>
-       <input type="radio" class="radiobtn" name="question<%= i+1 %>" value="C" class="text-dark" > <input class="choices" type="text" value="<%= data[i].optionc %>" disabled>
-       <input type="radio" class="radiobtn" name="question<%= i+1 %>" value="D" class="text-dark" > <input class="choices" type="text" value="<%= data[i].optiond %>" disabled>
-       <% } %>
-       <button type="button" onclick="displayRadioValue()" id="submit" class="mt-3 w-50">Submit</button>
-       <div id="result"></div> 
-	
-<script>
-  let dataaa = new Array();
-  dataaa = "<%= answers %>";
-  dataaa = dataaa.toString().split(',');
-  console.log(dataaa);
-  function displayRadioValue() { 
-	
-  var ele = document.getElementsByClassName('radiobtn'); 
-  var choices = document.getElementsByClassName('choices');
-  var counter = 0; 
-  var j = 0; 
-  for(let i=0; i< ele.length; i++){
-    if(ele[i].type="radio") { 
-        if(ele[i].checked) {
-          // console.log(ele[i]);
-          // console.log(choices[i]);
-          if(ele[i].value != dataaa[j]){
-            counter++;
-            j++;
-          }else{
-            j++;
-          };
-          document.getElementById("result").innerHTML 
-              += ele[i].name + " Value: " 
-              + choices[i].value + "<br>";
-           
+    <style>
+            .section-a{
+                background: url('../../public/take-quiz1.png');
+                background-size: cover;
+                height: 300px;
+                box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+                border-radius: 15px;
             }
-  }
-}
-console.log(counter);  
-}
-</script>
+            .section-b{            
+                background: url('../../public/take-quiz2.png');
+                background-size: cover;
+                height: 300px;
+                box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+                border-radius: 15px;
+            }
+            a{
+                font-size: 35px;
+            }
+            a:hover{
+                text-decoration-line: none;
+                color:#96e6a1;
+                transition: 0.3s;
+            }
+    </style>
+            <div class="row mt-5 mx-2 d-flex justify-content-around">
+                    <div class="mb-2 col-md-6 section-a d-flex justify-content-center ">
+                            <a class="text-center font-weight-bold" href="/take-subject-quiz">Take Subject Quiz</a>
+                    </div>              
+            </div>
+            <div class="row my-5 mx-2 d-flex justify-content-around">
+                    <div class="col-md-6 section-b d-flex justify-content-center">
+                            <a class="text-center font-weight-bold" href="/current-affairs-quiz">Take Current Affairs Quiz</a>           
+                    </div>                    
+            </div>
 <%- include("partials/footer.ejs") %>
