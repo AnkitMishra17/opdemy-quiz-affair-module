@@ -1,9 +1,4 @@
 const express = require('express');
-const session = require('express-session');
-const bodyParser = require('body-parser');
-const path = require('path');
-const mysql = require('mysql');
-const bcrypt = require('bcrypt');
 const connection = require('../db/models');
 
 const router = express.Router()
@@ -14,37 +9,23 @@ router.get('/', (req,res) =>{
 
 router.post('/', (req,res) =>{
     let {username, password} = req.body;
-    connection.query('SELECT * FROM admin WHERE username = ?',[username], function (error, results, fields) {
-      if (error) {
-          res.json({
-            status:false,
-            message:'there are some error with query'
-            })
-      }else{
-        if(results.length >0){
-            bcrypt.compare(password, results[0].password, function(err, ress) {
-                if(!ress){
-                    res.json({
-                      status:false,                  
-                      message:"username and password does not match"
-                    });
-                }else{   
-                  req.session.loggedin = true;
-                  req.session.username = username;
-                  res.redirect('/admin-login/dashboard');
-                }
-            });         
-        }
-        else{
-          res.json({
-              status:false,
-            message:"Username does not exists"
-          });
-        }
-      }
-    });
+    if (username && password) {
+      connection.query('SELECT * FROM admin WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+        if (results.length > 0) {
+          req.session.loggedin = true;
+          req.session.username = username;
+          res.redirect('/admin-login/dashboard');
+        } else {
+          res.send('Incorrect Username and/or Password!');
+        }			
+        res.end();
+      });
+    } else {
+      res.send('Please enter Username and Password!');
+      res.end();
+    }
 });
-   
+ 
 router.get('/dashboard', (req,res) =>{
         isloggedin(req,res,'dashboard');
 });

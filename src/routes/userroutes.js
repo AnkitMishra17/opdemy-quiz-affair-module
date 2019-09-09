@@ -1,9 +1,4 @@
 const express = require('express');
-const session = require('express-session');
-const bodyParser = require('body-parser');
-const path = require('path');
-const mysql = require('mysql');
-const bcrypt = require('bcrypt');
 const connection = require('../db/models');
 
 const router = express.Router()
