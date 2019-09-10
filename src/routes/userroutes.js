@@ -1,5 +1,6 @@
 const express = require('express');
 const connection = require('../db/models');
+const nl2br  = require('nl2br');
 
 const router = express.Router()
 
@@ -14,6 +15,7 @@ router.get('/take-subject-quiz', (req,res) =>{
             throw error;
         }else{
           let answerkey = new Array();
+          let questions = new Array();
           let answer1 = new Array();
           let answer2 = new Array();
           let answer3 = new Array();
@@ -23,9 +25,10 @@ router.get('/take-subject-quiz', (req,res) =>{
             answer1[i] = results[i].optiona;
             answer2[i] = results[i].optionb;
             answer3[i] = results[i].optionc;
-            answer4[i] = results[i].optiond; 
+            answer4[i] = results[i].optiond;
+            questions[i] = results[i].question;
           }
-          res.render('take-subject-quiz',{data: results,answers: answerkey,optiona: answer1,optionb: answer2,optionc: answer3,optiond: answer4});
+          res.render('take-subject-quiz',{answers: answerkey,optiona: answer1,optionb: answer2,optionc: answer3,optiond: answer4,question:questions});
         }    
     });
 });
@@ -37,6 +40,7 @@ router.get('/current-affairs-quiz', (req,res) =>{
             throw error;
         }else{
           let answerkey = new Array();
+          let questions = new Array();
           let answer1 = new Array();
           let answer2 = new Array();
           let answer3 = new Array();
@@ -46,9 +50,10 @@ router.get('/current-affairs-quiz', (req,res) =>{
             answer1[i] = results[i].optiona;
             answer2[i] = results[i].optionb;
             answer3[i] = results[i].optionc;
-            answer4[i] = results[i].optiond; 
+            answer4[i] = results[i].optiond;
+            questions[i] = results[i].question;
           }
-          res.render('current-affairs-quiz',{data: results,answers: answerkey,optiona: answer1,optionb: answer2,optionc: answer3,optiond: answer4});
+          res.render('current-affairs-quiz',{answers: answerkey,optiona: answer1,optionb: answer2,optionc: answer3,optiond: answer4,question:questions});
         }    
     });
 });

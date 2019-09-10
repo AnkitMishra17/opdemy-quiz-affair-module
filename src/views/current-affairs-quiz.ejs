@@ -28,18 +28,25 @@
 <h1 class="text-center mt-5">Take Current Affairs Quiz <i class="em em-smiley"></i></h1>
 <div class="container d-flex flex-column justify-content-center p-5">
 <div class="row">
-    <% for(let i = 0; i < data.length; i++) {  %>
+    <% for(let i = 0; i < question.length; i++) {  %>
       <div class="col-md-6 ">
             <div class="card questions border-primary mb-3">
                   <h3 class="card-header bg-primary text-white">question <%= i+1%></h3>
                   <div class="card-body">
-                    <p class="card-text font-weight-bold" style="font-size: 20px"><%= data[i].question %></p>
+                      <% if(question[i].includes("\n")) { %>
+                        <% let split = question[i].split("\n"); %>
+                        <% for(let j = 0; j < split.length; j++) {  %>
+                            <p class="card-text font-weight-bold" style="font-size: 20px"><%= split[j] %></p>
+                        <% } %>
+                      <% }else { %>
+                    <p class="card-text font-weight-bold" style="font-size: 20px"><%= question[i] %></p>
+                  <% } %>
                   </div>
-                  <ul class="list-group list-group-flush font-weight-bold" style="font-size: 17px">
-                    <li class="list-group-item">(A) <%= data[i].optiona %></li>
-                    <li class="list-group-item">(B) <%= data[i].optionb %></li>
-                    <li class="list-group-item">(C) <%= data[i].optionc %></li>
-                    <li class="list-group-item">(D) <%= data[i].optiond %></li>
+                  <ul class="list-group list-group-flush font-weight-bold" style="font-size: 14px">
+                    <li class="list-group-item">(A) <%= optiona[i] %></li>
+                    <li class="list-group-item">(B) <%= optionb[i] %></li>
+                    <li class="list-group-item">(C) <%= optionc[i] %></li>
+                    <li class="list-group-item">(D) <%= optiond[i] %></li>
                   </ul>
             </div>
       </div>
@@ -56,7 +63,7 @@
 </div>       
 	
 <script>
-  $(document).ready(function(){  
+  $(document).ready(function(){
   answerkey = "<%= answers %>";
   optiona = "<%= optiona %>";
   optionb = "<%= optionb %>";
