@@ -39,6 +39,14 @@ router.get('/dashboard/add-current-affairs', (req,res) =>{
     isloggedin(req,res,'add-current-affairs');
 });
 
+router.get('/dashboard/add-quiz-subjective', (req,res) =>{
+  isloggedin(req,res,'add-quiz-subjective');
+});
+
+router.get('/dashboard/add-current-affairs-subjective', (req,res) =>{
+  isloggedin(req,res,'add-current-affairs-subjective');
+});
+
 isloggedin = (req,res,page) => {
     if (req.session.loggedin) {
       res.render(page);
@@ -67,7 +75,26 @@ router.post('/dashboard/add-current-affairs', (req,res) =>{
     });
   });
 
-  
+router.post('/dashboard/add-quiz-subjective', (req,res) =>{
+    const {question} = req.body;
+    const sql = "INSERT INTO quiz_subjective (question) VALUES ('"+ question +"')";
+    connection.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("1 record inserted");
+      res.redirect('/admin-login/dashboard/add-quiz-subjective');
+    });
+  });
+
+router.post('/dashboard/add-current-affairs-subjective', (req,res) =>{
+    const {question} = req.body;
+    const sql = "INSERT INTO current_affair_subjective (question) VALUES ('"+ question +"')";
+    connection.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("1 record inserted");
+      res.redirect('/admin-login/dashboard/add-current-affairs-subjective');
+    });
+  });
+
 router.get('/logout', function(req, res, next) {
     if (req.session) {
       // delete session object

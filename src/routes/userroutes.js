@@ -57,5 +57,27 @@ router.get('/current-affairs-quiz', (req,res) =>{
         }    
     });
 });
-  
+
+router.get('/take-subjective-quiz', (req,res) =>{
+  const sql = 'SELECT * FROM quiz_subjective ORDER BY qid DESC LIMIT 5 ';
+  connection.query(sql, function (error, results, fields) {
+      if (error){
+          throw error;
+      }else{
+        res.render('quiz-subjective',{data:results});
+      }    
+  });
+});  
+
+router.get('/current-affairs-subjective-quiz', (req,res) =>{
+  const sql = 'SELECT * FROM current_affair_subjective ORDER BY qid DESC LIMIT 5 ';
+  connection.query(sql, function (error, results, fields) {
+      if (error){
+          throw error;
+      }else{
+        res.render('current-affairs-subjective',{data:results});
+      }    
+  });
+});  
+
 module.exports = router;   

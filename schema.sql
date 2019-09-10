@@ -21,6 +21,18 @@ CREATE TABLE `subject_quiz` (
 	PRIMARY KEY (`qid`)
 );
 
+CREATE TABLE `quiz_subjective` (
+	`qid` INT NOT NULL AUTO_INCREMENT,
+	`question` varchar(255) NOT NULL,
+	PRIMARY KEY (`qid`)
+);
+
+CREATE TABLE `current_affair_subjective` (
+	`qid` INT NOT NULL AUTO_INCREMENT,
+	`question` varchar(255) NOT NULL,
+	PRIMARY KEY (`qid`)
+);
+
 CREATE TABLE `admin` (
 	`uid` INT NOT NULL AUTO_INCREMENT,
 	`username` varchar(255) NOT NULL,
