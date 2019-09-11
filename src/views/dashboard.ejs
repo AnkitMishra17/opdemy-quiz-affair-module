@@ -14,6 +14,20 @@
                 box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
                 border-radius: 15px;
             }
+            .section-c{            
+                background: url('../../public/shot2.png');
+                background-size: cover;
+                height: 300px;
+                box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+                border-radius: 15px;
+            }
+            .section-d{            
+                background: url('../../public/admin3.jpg');
+                background-size: cover;
+                height: 300px;
+                box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+                border-radius: 15px;
+            }
             a{
                 font-size: 35px;
             }
@@ -22,21 +36,27 @@
                 color:#96e6a1;
                 transition: 0.3s;
             }
+            .bounceIn:hover{
+                    transform: scale(1.05);
+                    transition: 0.3s;
+            }
     </style>
     <a href="/admin-login/logout" class="btn btn-danger">logout</a>
+    <h2 class="d-flex justify-content-center mt-4">Add MCQ Questions</h2>
             <div class="row mt-5 mx-2 d-flex justify-content-around">
-                    <div class="mb-2 col-md-4 section-a d-flex justify-content-center ">
+                    <div class="mb-2 bounceIn col-md-4 section-a d-flex justify-content-center ">
                             <a class="text-center font-weight-bold" href="/admin-login/dashboard/add-quiz">Add Subject Quiz</a>
                     </div> 
-                    <div class="col-md-4 section-b d-flex justify-content-center">
+                    <div class="col-md-4 bounceIn section-b d-flex justify-content-center">
                             <a class="text-center font-weight-bold" href="/admin-login/dashboard/add-current-affairs">Add current affairs</a>           
                     </div>             
             </div>
+            <h2 class="d-flex justify-content-center mt-4">Add Subjective Questions</h2>
             <div class="row my-5 mx-2 d-flex justify-content-around">
-                <div class="mb-2 col-md-4 section-a d-flex justify-content-center ">
+                <div class="mb-2 col-md-4 bounceIn section-c d-flex justify-content-center ">
                         <a class="text-center font-weight-bold" href="/admin-login/dashboard/add-quiz-subjective">Add Subject Quiz</a>
                 </div> 
-                <div class="col-md-4 section-b d-flex justify-content-center">
+                <div class="col-md-4 bounceIn section-d d-flex justify-content-center">
                         <a class="text-center font-weight-bold" href="/admin-login/dashboard/add-current-affairs-subjective">Add current affairs</a>           
                 </div>                          
             </div>

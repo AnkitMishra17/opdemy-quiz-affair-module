@@ -8,9 +8,62 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+.card{
+  box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+}
+.card:hover{
+  transform: scale(1.04);
+  transition: 0.4s;
+}
 .questions{
    box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
 }
+.choices{
+  background: white;
+}
+input{
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+.form-radio
+{
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance: none;
+     display: inline-block;
+     position: relative;
+     background-color: #f1f1f1;
+     color: #666;
+     top: 10px;
+     height: 30px;
+     width: 30px;
+     border: 0;
+     border-radius: 50px;
+     cursor: pointer;     
+     margin-right: 7px;
+     outline: none;
+}
+.form-radio:checked::before
+{
+     position: absolute;
+     font: 13px/1 'Open Sans', sans-serif;
+     left: 11px;
+     top: 7px;
+     content: '\02143';
+     color: whitesmoke;
+     transform: rotate(40deg);
+}
+.form-radio:hover
+{
+     background-color: #f7f7f7;
+}
+.form-radio:checked
+{
+  background-image: linear-gradient(to right, #434343 0%, black 100%);
+}
+
 @media only screen and (max-width: 768px){
      .banner-bg{
         background-image: url('../../public/study.jpg');
@@ -26,9 +79,10 @@
 </section>
 <h1 class="text-center mt-5">Take Current Affairs Quiz <i class="em em-smiley"></i></h1>
 <div class="container d-flex flex-column justify-content-center p-5">
-  <div id="prompt"></div>
-  <div class="row output ">
-    <div class="col-md-6 animated fadeIn">
+  
+      <div class="d-flex justify-content-center" id="prompt"></div>
+  <div class="row output d-flex justify-content-center">
+    <div class="col-md-8 animated fadeIn">
       <div class="card question border-primary mb-3">
             <h3 class="card-header bg-primary text-white">Question 1</h3>
             <div class="card-body questions">
@@ -43,34 +97,39 @@
             </div>
             <ul class="list-group list-group-flush font-weight-bold d-flex justify-content-center" style="font-size: 14px">
               <li class="list-group-item">
-                <input type="radio" class="radiobtn" name="question[0]" value="A" class="text-dark"> <input class="choices w-75" type="text" value="<%= optiona[0] %>" disabled>
+                <input type="radio" class="radiobtn form-radio" name="question[0]" value="A" class="text-dark"> <input class="choices w-75" type="text" value="<%= optiona[0] %>" disabled>
               </li>
               <li class="list-group-item">
-                <input type="radio" class="radiobtn" name="question[0]" value="B" class="text-dark" > <input class="choices w-75" type="text" value="<%= optionb[0] %>" disabled>
+                <input type="radio" class="radiobtn form-radio" name="question[0]" value="B" class="text-dark" > <input class="choices w-75" type="text" value="<%= optionb[0] %>" disabled>
               </li>
               <li class="list-group-item">
-                <input type="radio" class="radiobtn" name="question[0]" value="C" class="text-dark" > <input class="choices w-75" type="text" value="<%= optionc[0] %>" disabled>
+                <input type="radio" class="radiobtn form-radio" name="question[0]" value="C" class="text-dark" > <input class="choices w-75" type="text" value="<%= optionc[0] %>" disabled>
               </li>
               <li class="list-group-item">
-                <input type="radio" class="radiobtn" name="question[0]" value="D" class="text-dark" > <input class="choices w-75" type="text" value="<%= optiond[0] %>" disabled>
+                <input type="radio" class="radiobtn form-radio" name="question[0]" value="D" class="text-dark" > <input class="choices w-75" type="text" value="<%= optiond[0] %>" disabled>
               </li>
             </ul>
       </div>
     </div>
   </div>
-  <button type="submit" id="next" class="btn btn-success mb-5 w-50">Next Question</button>
-      <br>
-      <button type="submit" id="submit" class="btn btn-success mb-5 w-50" style="display:none;">View Answers</button>
-
-      <div class="card border-primary mb-3" id="card" style="display:none;">
-        <h3 class="card-header bg-primary text-white">Correct Answers</h3>
-        <ul class="list-group list-group-flush font-weight-bold" id="result" style="font-size: 14px">
-        </ul>
-      </div>  
-      <div class="card border-primary mb-3" id="answers" style="display:none;">
-          <h3 class="card-header bg-primary text-white">Your Answers</h3>
-          <ul class="list-group list-group-flush font-weight-bold" id="displayanswers" style="font-size: 14px">
-          </ul>
+  <div class="d-flex justify-content-center">
+      <button type="submit" id="next" class="btn btn-success mb-5 w-50">Next Question</button>
+  </div>
+  
+  <div class="d-flex justify-content-center">
+      <button type="submit" id="submit" class="btn btn-success mb-5 w-50" style="display:none;">Submit and View Answers</button>
+  </div>
+      <div class="row d-flex justify-content-around">
+          <div class="col-md-5 mx-1 card animated slideInDown mb-3" id="card" style="display:none;">
+              <h3 class="card-header bg-white text-primary ">Correct Answers</h3>
+              <ul class="list-group list-group-flush font-weight-bold" id="result" style="font-size: 14px">
+              </ul>
+            </div>  
+            <div class="col-md-5 card animated slideInDown mb-3" id="answers" style="display:none;">
+                <h3 class="card-header bg-white text-primary">Your Answers</h3>
+                <ul class="list-group list-group-flush font-weight-bold" id="displayanswers" style="font-size: 14px">
+                </ul>
+            </div>
       </div>
 </div>       
 	
@@ -91,47 +150,60 @@
   
   let j = 1;
   let useranswers = new Array();
-
   $('#next').on('click',(e)=>{
-  if(j == 4){
-    nextquestion();
-    $("#submit").css('display','block');
-    $("#next").css('display','none');
-  }else{
-    nextquestion();
-    j++; 
+  if(j <= questions.length){
+    console.log('else');
+    let no_prompt = check();
+    if(no_prompt == true){
+      let k = j++;
+      $('#prompt').html('')
+      nextquestion(k);
+      if(k == questions.length-1){
+        $("#next").css('display','none');
+        $("#submit").css('display','block');
+      }
+    }else{
+      $('#prompt').html(`<div class="alert w-50 alert-dismissible alert-danger">
+                          <button type="button" class="close" data-dismiss="alert">&times;</button>
+                          <strong>Please Select an option!</strong>
+                        </div>`)
+    } 
   }         
   });
 
-  nextquestion = () =>{
+  check = () =>{
     let ele = $('.radiobtn');
-    let choices = $('.choices')
+    let choices = $('.choices');
+    let flag = false;
     for(let i=0; i< ele.length; i++){
     if(ele[i].type="radio") { 
         if(ele[i].checked) {
-          console.log(i);
           useranswers.push(choices[i].value);
+          flag = true;
         }
       }
   }
+  return flag;
+}
 
+nextquestion = (j) =>{
     $(".output").html(`
-          <div class="col-md-6 animated slideInRight">
+          <div class="col-md-8 animated bounceIn">
             <div class="card question border-primary mb-3">
                   <h3 class="card-header bg-primary text-white">question ${j+1}</h3>
                   <div class="card-body questions"></div>
                   <ul class="list-group list-group-flush font-weight-bold" style="font-size: 14px">
                       <li class="list-group-item">
-                        <input type="radio" class="radiobtn" name="question${j+1}" value="A" class="text-dark" > <input class="choices w-75" type="text" value="${optiona[j]}" disabled>
+                        <input type="radio" class="radiobtn form-radio" name="question${j+1}" value="A" class="text-dark" > <input class="choices w-75" type="text" value="${optiona[j]}" disabled>
                       </li>
                       <li class="list-group-item">
-                        <input type="radio" class="radiobtn" name="question${j+1}" value="B" class="text-dark" > <input class="choices w-75" type="text" value="${optionb[j]}" disabled>
+                        <input type="radio" class="radiobtn form-radio" name="question${j+1}" value="B" class="text-dark" > <input class="choices w-75" type="text" value="${optionb[j]}" disabled>
                       </li>
                       <li class="list-group-item">
-                        <input type="radio" class="radiobtn" name="question${j+1}" value="C" class="text-dark" > <input class="choices w-75" type="text" value="${optionc[j]}" disabled>
+                        <input type="radio" class="radiobtn form-radio" name="question${j+1}" value="C" class="text-dark" > <input class="choices w-75" type="text" value="${optionc[j]}" disabled>
                       </li>
                       <li class="list-group-item">
-                        <input type="radio" class="radiobtn" name="question${j+1}" value="D" class="text-dark" > <input class="choices w-75" type="text" value="${optiond[j]}" disabled>
+                        <input type="radio" class="radiobtn form-radio" name="question${j+1}" value="D" class="text-dark" > <input class="choices w-75" type="text" value="${optiond[j]}" disabled>
                       </li>
                   </ul>
             </div>
@@ -148,25 +220,16 @@
 
 };
 
+  $("#submit").on('click',(e)=>{
+    let no_prompt = check();
+    if(no_prompt == false){
+      $('#prompt').html(`<div class="alert w-50 alert-dismissible alert-danger">
+                          <button type="button" class="close" data-dismiss="alert">&times;</button>
+                          <strong>Please Select an option!</strong>
+                        </div>`)
+                      }else{
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  $("#submit").one('click',(e)=>{
-    $("#card").fadeIn();
+                        $("#card").fadeIn();
     $("#answers").fadeIn();
       for(let i = 0; i < answerkey.length; i++ ){
             var x = answerkey[i];
@@ -188,7 +251,8 @@
             $("#displayanswers").append(`<li class="list-group-item">${i+1}) ${useranswers[i]}</li>`);
       }
     $("#submit").prop('disabled',true);
-    console.log(useranswers);
+                      }
+    
   }); 
 });
 </script>

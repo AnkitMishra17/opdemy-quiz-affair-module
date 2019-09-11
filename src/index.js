@@ -34,9 +34,9 @@ app.use("/admin-login", adminroutes)
 //user-routes
 app.use("/take-quiz", userroutes)
 
-app.get('/take-quiz/past-questions', (req,res) =>{
-  res.render('past-questions');
-});
+// app.get('/take-quiz/past-questions', (req,res) =>{
+//   res.render('past-questions');
+// });
 
 const server = app.listen(port, (req, res) => {
     console.log(`Server started at port ${port}..`)
