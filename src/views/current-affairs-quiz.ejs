@@ -26,6 +26,7 @@
 </section>
 <h1 class="text-center mt-5">Take Current Affairs Quiz <i class="em em-smiley"></i></h1>
 <div class="container d-flex flex-column justify-content-center p-5">
+  <div id="prompt"></div>
   <div class="row output ">
     <div class="col-md-6 animated fadeIn">
       <div class="card question border-primary mb-3">
@@ -65,6 +66,11 @@
         <h3 class="card-header bg-primary text-white">Correct Answers</h3>
         <ul class="list-group list-group-flush font-weight-bold" id="result" style="font-size: 14px">
         </ul>
+      </div>  
+      <div class="card border-primary mb-3" id="answers" style="display:none;">
+          <h3 class="card-header bg-primary text-white">Your Answers</h3>
+          <ul class="list-group list-group-flush font-weight-bold" id="displayanswers" style="font-size: 14px">
+          </ul>
       </div>
 </div>       
 	
@@ -82,14 +88,33 @@
   optionb = optionb.toString().split(',');
   optionc = optionc.toString().split(',');
   optiond = optiond.toString().split(',');
-  console.log(questions);
   
-  var ele = $('.radiobtn'); 
-  console.log(ele.length)
   let j = 1;
+  let useranswers = new Array();
+
+  $('#next').on('click',(e)=>{
+  if(j == 4){
+    nextquestion();
+    $("#submit").css('display','block');
+    $("#next").css('display','none');
+  }else{
+    nextquestion();
+    j++; 
+  }         
+  });
 
   nextquestion = () =>{
-    
+    let ele = $('.radiobtn');
+    let choices = $('.choices')
+    for(let i=0; i< ele.length; i++){
+    if(ele[i].type="radio") { 
+        if(ele[i].checked) {
+          console.log(i);
+          useranswers.push(choices[i].value);
+        }
+      }
+  }
+
     $(".output").html(`
           <div class="col-md-6 animated slideInRight">
             <div class="card question border-primary mb-3">
@@ -120,21 +145,8 @@
             }else{
               $(".questions").append(`<p class="card-text font-weight-bold" style="font-size: 20px">${questions[j]}</p>`);
             }
-  }
-  $('#next').on('click',(e)=>{
-    console.log(j);
-  if(j == 4){
-    $("#submit").css('display','block');
-    $("#next").css('display','none');
-    nextquestion();
-  }else{
-    nextquestion();
-    j++; 
-    
-  }         
-  });       
 
-// $(".output").html(``);
+};
 
 
 
@@ -153,14 +165,9 @@
 
 
 
-
-
-
-  $('#click').on('click',(e)=>{
-    console.log('working')
-  })
   $("#submit").one('click',(e)=>{
     $("#card").fadeIn();
+    $("#answers").fadeIn();
       for(let i = 0; i < answerkey.length; i++ ){
             var x = answerkey[i];
             let choices = $('.choices');
@@ -178,8 +185,10 @@
                    $("#result").append(`<li class="list-group-item">${i+1}) ${optiond[i]}</li>`);
                    break;
             }
+            $("#displayanswers").append(`<li class="list-group-item">${i+1}) ${useranswers[i]}</li>`);
       }
     $("#submit").prop('disabled',true);
+    console.log(useranswers);
   }); 
 });
 </script>
