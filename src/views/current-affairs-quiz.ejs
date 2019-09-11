@@ -26,42 +26,46 @@
 </section>
 <h1 class="text-center mt-5">Take Current Affairs Quiz <i class="em em-smiley"></i></h1>
 <div class="container d-flex flex-column justify-content-center p-5">
-<div class="row">
-    <% for(let i = 0; i < question.length; i++) {  %>
-      <div class="col-md-6 ">
-            <div class="card question border-primary mb-3">
-                  <h3 class="card-header bg-primary text-white">question <%= i+1%></h3>
-                  <div class="card-body">
-                      <% if(question[i].includes("\n")) { %>
-                        <% let split = question[i].split("\n"); %>
-                        <% for(let j = 0; j < split.length; j++) {  %>
-                            <p class="card-text font-weight-bold" style="font-size: 20px"><%= split[j] %></p>
-                        <% } %>
-                      <% }else { %>
-                    <p class="card-text font-weight-bold" style="font-size: 20px"><%= question[i] %></p>
-                  <% } %>
-                  </div>
-                  <ul class="list-group list-group-flush font-weight-bold" style="font-size: 14px">
-                      <input type="radio" class="radiobtn" name="question<%= i+1 %>" value="A" class="text-dark" > <input class="choices" type="text" value="<%= optiona[i] %>" disabled>
-                      <input type="radio" class="radiobtn" name="question<%= i+1 %>" value="B" class="text-dark" > <input class="choices" type="text" value="<%= optionb[i] %>" disabled>
-                      <input type="radio" class="radiobtn" name="question<%= i+1 %>" value="C" class="text-dark" > <input class="choices" type="text" value="<%= optionc[i] %>" disabled>
-                      <input type="radio" class="radiobtn" name="question<%= i+1 %>" value="D" class="text-dark" > <input class="choices" type="text" value="<%= optiond[i] %>" disabled>
-                  </ul>
+  <div class="row output ">
+    <div class="col-md-6 animated fadeIn">
+      <div class="card question border-primary mb-3">
+            <h3 class="card-header bg-primary text-white">Question 1</h3>
+            <div class="card-body questions">
+              <% if(question[0].includes("\n")) { %>
+               <% split = question[0].split("\n"); %>                   
+               <% for(i=0;i< split.length;i++){ %>
+                    <p class="card-text font-weight-bold" style="font-size: 20px"><%= split[i] %></p>
+                 <% } %>
+                 <%  }else{ %>
+                <p class="card-text font-weight-bold" style="font-size: 20px"><%= question[0] %></p>
+                <%  } %>
             </div>
+            <ul class="list-group list-group-flush font-weight-bold d-flex justify-content-center" style="font-size: 14px">
+              <li class="list-group-item">
+                <input type="radio" class="radiobtn" name="question[0]" value="A" class="text-dark"> <input class="choices w-75" type="text" value="<%= optiona[0] %>" disabled>
+              </li>
+              <li class="list-group-item">
+                <input type="radio" class="radiobtn" name="question[0]" value="B" class="text-dark" > <input class="choices w-75" type="text" value="<%= optionb[0] %>" disabled>
+              </li>
+              <li class="list-group-item">
+                <input type="radio" class="radiobtn" name="question[0]" value="C" class="text-dark" > <input class="choices w-75" type="text" value="<%= optionc[0] %>" disabled>
+              </li>
+              <li class="list-group-item">
+                <input type="radio" class="radiobtn" name="question[0]" value="D" class="text-dark" > <input class="choices w-75" type="text" value="<%= optiond[0] %>" disabled>
+              </li>
+            </ul>
       </div>
-       <% } %>
-</div> 
+    </div>
+  </div>
+  <button type="submit" id="next" class="btn btn-success mb-5 w-50">Next Question</button>
       <br>
-      <button type="submit" id="submit" class="btn btn-success mb-5 w-50">View Answers</button>
+      <button type="submit" id="submit" class="btn btn-success mb-5 w-50" style="display:none;">View Answers</button>
 
       <div class="card border-primary mb-3" id="card" style="display:none;">
-      <h3 class="card-header bg-primary text-white">Correct Answers</h3>
-      <ul class="list-group list-group-flush font-weight-bold" id="result" style="font-size: 14px">
-      </ul>
-  </div>
-  <div class="append"></div>
-  
-  <div class="row output"></div> 
+        <h3 class="card-header bg-primary text-white">Correct Answers</h3>
+        <ul class="list-group list-group-flush font-weight-bold" id="result" style="font-size: 14px">
+        </ul>
+      </div>
 </div>       
 	
 <script>
@@ -79,36 +83,56 @@
   optionc = optionc.toString().split(',');
   optiond = optiond.toString().split(',');
   console.log(questions);
+  
+  var ele = $('.radiobtn'); 
+  console.log(ele.length)
+  let j = 1;
 
-  let j = 0;
-  $(".output").append(`
-          <div class="col-md-6">
+  nextquestion = () =>{
+    
+    $(".output").html(`
+          <div class="col-md-6 animated slideInRight">
             <div class="card question border-primary mb-3">
-                  <h3 class="card-header bg-primary text-white">question ${j+2}</h3>
-                  <div class="card-body questions">
-                    
-                  </div>
+                  <h3 class="card-header bg-primary text-white">question ${j+1}</h3>
+                  <div class="card-body questions"></div>
                   <ul class="list-group list-group-flush font-weight-bold" style="font-size: 14px">
-                      <input type="radio" class="radiobtn" name="question${j+2}" value="A" class="text-dark" > <input class="choices" type="text" value="${optiona[j]}" disabled>
-                      <input type="radio" class="radiobtn" name="question${j+2}" value="B" class="text-dark" > <input class="choices" type="text" value="${optionb[j]}" disabled>
-                      <input type="radio" class="radiobtn" name="question${j+2}" value="C" class="text-dark" > <input class="choices" type="text" value="${optionc[j]}" disabled>
-                      <input type="radio" class="radiobtn" name="question${j+2}" value="D" class="text-dark" > <input class="choices" type="text" value="${optiond[j]}" disabled>
+                      <li class="list-group-item">
+                        <input type="radio" class="radiobtn" name="question${j+1}" value="A" class="text-dark" > <input class="choices w-75" type="text" value="${optiona[j]}" disabled>
+                      </li>
+                      <li class="list-group-item">
+                        <input type="radio" class="radiobtn" name="question${j+1}" value="B" class="text-dark" > <input class="choices w-75" type="text" value="${optionb[j]}" disabled>
+                      </li>
+                      <li class="list-group-item">
+                        <input type="radio" class="radiobtn" name="question${j+1}" value="C" class="text-dark" > <input class="choices w-75" type="text" value="${optionc[j]}" disabled>
+                      </li>
+                      <li class="list-group-item">
+                        <input type="radio" class="radiobtn" name="question${j+1}" value="D" class="text-dark" > <input class="choices w-75" type="text" value="${optiond[j]}" disabled>
+                      </li>
                   </ul>
             </div>
           </div>`);
-
-          let k = 0;
-            if(questions[k].includes("\n")){
-              split = questions[k].split("\n");
-              
-          for(i=0;i< split.length;i++){
-            $(".questions").append(`<p class="card-text font-weight-bold" style="font-size: 20px">${split[i]}</p>`);
-          }
-              console.log(split);
+          
+          if(questions[j].includes("\n")){
+              split = questions[j].split("\n");                   
+                for(i=0;i< split.length;i++){
+                  $(".questions").append(`<p class="card-text font-weight-bold" style="font-size: 20px">${split[i]}</p>`);
+                }
             }else{
-              $(".questions").append(`<p class="card-text font-weight-bold" style="font-size: 20px">${questions[k]}</p>`);
+              $(".questions").append(`<p class="card-text font-weight-bold" style="font-size: 20px">${questions[j]}</p>`);
             }
-
+  }
+  $('#next').on('click',(e)=>{
+    console.log(j);
+  if(j == 4){
+    $("#submit").css('display','block');
+    $("#next").css('display','none');
+    nextquestion();
+  }else{
+    nextquestion();
+    j++; 
+    
+  }         
+  });       
 
 // $(".output").html(``);
 
