@@ -56,7 +56,14 @@ isloggedin = (req,res,page) => {
 };
 
 router.post('/dashboard/add-quiz', (req,res) =>{
-    const {question, optionA, optionB, optionC, optionD, answer} = req.body;
+    let {question, optionA, optionB, optionC, optionD, answer} = req.body;
+    
+    question = question.replace(/\,/g,"@");
+    optionA = optionA.replace(/\,/g,"@");
+    optionB = optionB.replace(/\,/g,"@");
+    optionC = optionC.replace(/\,/g,"@");
+    optionD = optionD.replace(/\,/g,"@");
+    
     const sql = "INSERT INTO subject_quiz (question, optiona, optionb, optionc, optiond, answer) VALUES ('"+ question +"', '"+ optionA +"', '"+ optionB +"','"+ optionC +"','"+ optionD +"','"+ answer +"')";
     connection.query(sql, function (err, result) {
       if (err) throw err;
@@ -66,7 +73,14 @@ router.post('/dashboard/add-quiz', (req,res) =>{
   });
   
 router.post('/dashboard/add-current-affairs', (req,res) =>{
-    const {question, optionA, optionB, optionC, optionD, answer} = req.body;
+    let {question, optionA, optionB, optionC, optionD, answer} = req.body;
+    
+    question = question.replace(/\,/g,"@");
+    optionA = optionA.replace(/\,/g,"@");
+    optionB = optionB.replace(/\,/g,"@");
+    optionC = optionC.replace(/\,/g,"@");
+    optionD = optionD.replace(/\,/g,"@");
+    
     const sql = "INSERT INTO current_affair_quiz (question, optiona, optionb, optionc, optiond, answer) VALUES ('"+ question +"', '"+ optionA +"', '"+ optionB +"','"+ optionC +"','"+ optionD +"','"+ answer +"')";
     connection.query(sql, function (err, result) {
       if (err) throw err;

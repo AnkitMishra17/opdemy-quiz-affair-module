@@ -2,7 +2,7 @@
 
 <style>
    .banner-bg{
-    background-image: url('../../public/study.jpg');
+    background-image: url('../../public/work1.jpg');
     height: 600px;
     background-attachment: fixed;
     background-size: cover;
@@ -86,10 +86,12 @@ input{
       <div class="card question border-primary mb-3">
             <h3 class="card-header bg-primary text-white">Question 1</h3>
             <div class="card-body questions">
+              
               <% if(question[0].includes("\n")) { %>
                <% split = question[0].split("\n"); %>                   
                <% for(i=0;i< split.length;i++){ %>
-                    <p class="card-text font-weight-bold" style="font-size: 20px"><%= split[i] %></p>
+                <% split[i] = split[i].replace(/\@/g,",") %>
+                           <p class="card-text font-weight-bold" style="font-size: 20px"><%= split[i] %></p>
                  <% } %>
                  <%  }else{ %>
                 <p class="card-text font-weight-bold" style="font-size: 20px"><%= question[0] %></p>
@@ -97,16 +99,20 @@ input{
             </div>
             <ul class="list-group list-group-flush font-weight-bold d-flex justify-content-center" style="font-size: 14px">
               <li class="list-group-item">
-                <input type="radio" class="radiobtn form-radio" name="question[0]" value="A" class="text-dark"> <input class="choices w-75" type="text" value="<%= optiona[0] %>" disabled>
+                  <% option1 = optiona[0].replace(/\@/g,",") %>
+                <input type="radio" class="radiobtn form-radio" name="question1" value="A" class="text-dark"> <input class="choices w-75" type="text" value="<%= option1 %>" disabled>
               </li>
               <li class="list-group-item">
-                <input type="radio" class="radiobtn form-radio" name="question[0]" value="B" class="text-dark" > <input class="choices w-75" type="text" value="<%= optionb[0] %>" disabled>
+                  <% option2 = optionb[0].replace(/\@/g,",") %>
+                <input type="radio" class="radiobtn form-radio" name="question1" value="B" class="text-dark" > <input class="choices w-75" type="text" value="<%= option2 %>" disabled>
               </li>
               <li class="list-group-item">
-                <input type="radio" class="radiobtn form-radio" name="question[0]" value="C" class="text-dark" > <input class="choices w-75" type="text" value="<%= optionc[0] %>" disabled>
+                  <% option3 = optionc[0].replace(/\@/g,",") %>
+                <input type="radio" class="radiobtn form-radio" name="question1" value="C" class="text-dark" > <input class="choices w-75" type="text" value="<%= option3 %>" disabled>
               </li>
               <li class="list-group-item">
-                <input type="radio" class="radiobtn form-radio" name="question[0]" value="D" class="text-dark" > <input class="choices w-75" type="text" value="<%= optiond[0] %>" disabled>
+                  <% option4 = optiond[0].replace(/\@/g,",") %>
+                <input type="radio" class="radiobtn form-radio" name="question1" value="D" class="text-dark" > <input class="choices w-75" type="text" value="<%= option4 %>" disabled>
               </li>
             </ul>
       </div>
@@ -147,7 +153,15 @@ input{
   optionb = optionb.toString().split(',');
   optionc = optionc.toString().split(',');
   optiond = optiond.toString().split(',');
+
   
+  for(let i=0; i< questions.length;i++){
+    questions[i] = questions[i].replace(/\@/g,",");
+    optiona[i] = optiona[i].replace(/\@/g,",");
+    optionb[i] = optionb[i].replace(/\@/g,",");
+    optionc[i] = optionc[i].replace(/\@/g,",");  
+    optiond[i] = optiond[i].replace(/\@/g,",");
+  }
   let j = 1;
   let useranswers = new Array();
   $('#next').on('click',(e)=>{
