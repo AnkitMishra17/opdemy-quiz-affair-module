@@ -94,7 +94,8 @@ input{
                            <p class="card-text font-weight-bold" style="font-size: 20px"><%= split[i] %></p>
                  <% } %>
                  <%  }else{ %>
-                <p class="card-text font-weight-bold" style="font-size: 20px"><%= question[0] %></p>
+                  <% question1 = question[0].replace(/\@/g,",") %> 
+                <p class="card-text font-weight-bold" style="font-size: 20px"><%= question1 %></p>
                 <%  } %>
             </div>
             <ul class="list-group list-group-flush font-weight-bold d-flex justify-content-center" style="font-size: 14px">
