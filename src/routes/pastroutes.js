@@ -13,7 +13,6 @@ router.get('/', (req,res) =>{
         if (error){
             throw error;
         }else{
-          console.log(results);
           let array = new Array();
           for(let i=0; i< results.length; i++){
             array[i] = results[i].Date.toDateString();
@@ -31,7 +30,6 @@ router.get('/current-affairs-quiz', (req,res) =>{
         if (error){
             throw error;
         }else{
-          console.log(results);
           let array = new Array();
           for(let i=0; i< results.length; i++){
             array[i] = results[i].Date.toDateString();
@@ -48,7 +46,6 @@ router.get('/take-subjective-quiz', (req,res) =>{
         if (error){
             throw error;
         }else{
-          console.log(results);
           let array = new Array();
           for(let i=0; i< results.length; i++){
             array[i] = results[i].Date.toDateString();
@@ -65,7 +62,6 @@ router.get('/current-affairs-subjective-quiz', (req,res) =>{
         if (error){
             throw error;
         }else{
-          console.log(results);
           let array = new Array();
           for(let i=0; i< results.length; i++){
             array[i] = results[i].Date.toDateString();

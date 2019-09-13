@@ -27,7 +27,7 @@
     </style>
             <div class="container">
                 <h1 class="d-flex justify-content-center my-4"><%= title %></h1>
-                <div class="jumbotron output animated pulse slow">
+                <div class="jumbotron output animated pulse slow"  style="box-shadow: 0 0 20px 0 rgba(72,94,116,0.7); border-radius: 20px;">
                 </div>
             </div>
     <script>
@@ -35,7 +35,6 @@
                 let dates = `<%= output %>`;
                 let id = `<%= id %>`;
                 let description;
-                console.log(id);
                     dates = dates.split(",");
                     let DDMY = new Array();
                     for(let i=0; i< dates.length; i++){

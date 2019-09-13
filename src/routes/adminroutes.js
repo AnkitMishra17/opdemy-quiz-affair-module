@@ -85,7 +85,6 @@ router.post('/dashboard/add-current-affairs', (req,res) =>{
     optionB = optionB.replace(/\,/g,"@");
     optionC = optionC.replace(/\,/g,"@");
     optionD = optionD.replace(/\,/g,"@");
-    console.log(question);
     
     const sql = "INSERT INTO current_affair_quiz (question, optiona, optionb, optionc, optiond, answer) VALUES ('"+ question +"', '"+ optionA +"', '"+ optionB +"','"+ optionC +"','"+ optionD +"','"+ answer +"')";
     connection.query(sql, function (err, result) {
