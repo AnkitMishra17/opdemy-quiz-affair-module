@@ -1,4 +1,5 @@
 <%- include("partials/header.ejs") %>
+<!-- <link rel="stylesheet" href="../../public/formstyles.css"> -->
 
     <style>
             .section-a{
@@ -16,15 +17,58 @@
                 border-radius: 15px;
             }
             a{
-                font-size: 35px;
+                font-size: 20px;
             }
             a:hover{
                 text-decoration-line: none;
-                color:#96e6a1;
+                color:rgba(35, 165, 53, 0.801);
                 transition: 0.3s;
             }
     </style>
-            <div>
-                <a href="/past-questions?" >Hello</a>
+            <div class="container">
+                <h1 class="d-flex justify-content-center my-4"><%= title %></h1>
+                <div class="voro">
+
+                </div>
+                <div class="jumbotron output">
+
+                </div> 
             </div>
+    <script>
+            $(document).ready(function(){
+                let dates = `<%= output %>`;
+                let id = `<%= id %>`;
+                let description;
+                console.log(id);
+                    dates = dates.split(",");
+                    let DDMY = new Array();
+                    for(let i=0; i< dates.length; i++){
+                        DDMY[i] = dates[i].split(" ");
+                    }
+                    
+                    switch (id){
+                        case "1":
+                            description = 'Static syllabus quizzes';
+                            break;
+                        case "2":
+                            description = 'Current affairs quizzes';
+                            break;
+                        case "3":
+                            description = 'GS Mains questions';
+                            break;
+                        case "4":
+                            description = 'Current Affairs';
+                            break;   
+                    }
+                    for(let i=0; i< dates.length; i++){
+                        $('.output').append(`
+                            <a class="font-weight-bold" href="/past-questions/past/?month=${DDMY[i][1]}&date=${DDMY[i][2]}&year=${DDMY[i][3]}">
+                                ${description} ${dates[i]}
+                            </a>
+                            <br>
+                            <hr class="my-4">
+                            `);
+                    }
+            })
+    </script>
 <%- include("partials/footer.ejs") %>

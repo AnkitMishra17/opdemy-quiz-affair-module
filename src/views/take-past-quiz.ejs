@@ -1,0 +1,62 @@
+<%- include("partials/header.ejs") %>
+    <style>
+            .section-a{
+                background: url('../../public/take-quiz1.png');
+                background-size: cover;
+                height: 300px;
+                box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+                border-radius: 15px;
+            }
+            .section-b{            
+                background: url('../../public/take-quiz2.png');
+                background-size: cover;
+                height: 300px;
+                box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+                border-radius: 15px;
+            }
+            .section-c{            
+                background: url('../../public/quiz3.jpg');
+                background-size: cover;
+                height: 300px;
+                box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+                border-radius: 15px;
+            }
+            .section-d{            
+                background: url('../../public/invoice.jpg');
+                background-size: cover;
+                height: 300px;
+                box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+                border-radius: 15px;
+            }
+            a{
+                font-size: 35px;
+            }
+            a:hover{
+                text-decoration-line: none;
+                color:#96e6a1;
+                transition: 0.3s;
+            }
+            .bounceIn:hover{
+                    transform: scale(1.05);
+                    transition: 0.3s;
+            }
+    </style>
+    <h2 class="d-flex justify-content-center mt-4">MCQ Questions</h2>
+            <div class="row mx-2 d-flex justify-content-around">
+                    <div class="my-5 bounceIn col-md-4 section-a d-flex justify-content-center">
+                            <a class="text-center font-weight-bold" href="/past-questions/take-subject-quiz">Subject Quiz</a>
+                    </div>
+                    <div class="my-5 bounceIn col-md-4 section-b d-flex justify-content-center">
+                            <a class="text-center font-weight-bold" href="/past-questions/current-affairs-quiz">Current Affairs Quiz</a>           
+                    </div>              
+            </div>
+            <h2 class="d-flex justify-content-center mt-4">Subjective Questions</h2>
+            <div class="row mx-2 d-flex justify-content-around">
+                        <div class="my-5 bounceIn col-md-4 section-c d-flex justify-content-center ">
+                                <a class="text-center font-weight-bold" href="/past-questions/take-subjective-quiz">Subject Quiz</a>
+                        </div>
+                        <div class="my-5 bounceIn col-md-4 section-d d-flex justify-content-center">
+                                <a class="text-center font-weight-bold" href="/past-questions/current-affairs-subjective-quiz">Current Affairs Quiz</a>           
+                        </div>               
+            </div>
+<%- include("partials/footer.ejs") %>
