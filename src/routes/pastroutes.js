@@ -83,7 +83,7 @@ router.get('/past-subject/', (req,res) =>{
       let date = req.query.date;
       let year = req.query.year;
       
-      const sql = 'SELECT * FROM subject_quiz WHERE MONTH(Date) = ? AND YEAR(Date) = ? AND DAY(Date) = ?';
+      const sql = 'SELECT * FROM subject_quiz WHERE MONTH(Date) = ? AND YEAR(Date) = ? AND DAY(Date) = ? LIMIT 5';
       connection.query(sql,[month, year, date], function (error, results, fields) {
         if (error){
             throw error;
@@ -116,7 +116,7 @@ router.get('/past-current-affairs/', (req,res) =>{
     let date = req.query.date;
     let year = req.query.year;
     
-    const sql = 'SELECT * FROM current_affair_quiz WHERE MONTH(Date) = ? AND YEAR(Date) = ? AND DAY(Date) = ?';
+    const sql = 'SELECT * FROM current_affair_quiz WHERE MONTH(Date) = ? AND YEAR(Date) = ? AND DAY(Date) = ? LIMIT 5';
     connection.query(sql,[month, year, date], function (error, results, fields) {
       if (error){
           throw error;
@@ -149,7 +149,7 @@ router.get('/past-GS-subjective/', (req,res) =>{
   let date = req.query.date;
   let year = req.query.year;
   
-  const sql = 'SELECT * FROM  quiz_subjective WHERE MONTH(Date) = ? AND YEAR(Date) = ? AND DAY(Date) = ?';
+  const sql = 'SELECT * FROM  quiz_subjective WHERE MONTH(Date) = ? AND YEAR(Date) = ? AND DAY(Date) = ? LIMIT 5';
   connection.query(sql,[month, year, date], function (error, results, fields) {
     if (error){
         throw error;
@@ -168,7 +168,7 @@ router.get('/past-current-affairs-subjective/', (req,res) =>{
   let date = req.query.date;
   let year = req.query.year;
   
-  const sql = 'SELECT * FROM current_affair_subjective WHERE MONTH(Date) = ? AND YEAR(Date) = ? AND DAY(Date) = ?';
+  const sql = 'SELECT * FROM current_affair_subjective WHERE MONTH(Date) = ? AND YEAR(Date) = ? AND DAY(Date) = ? LIMIT 5';
   connection.query(sql,[month, year, date], function (error, results, fields) {
     if (error){
         throw error;
