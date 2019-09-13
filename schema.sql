@@ -1,7 +1,7 @@
 
 CREATE TABLE `current_affair_quiz` (
 	`qid` INT NOT NULL AUTO_INCREMENT,
-	`question` varchar(255) NOT NULL,
+	`question` varchar(500) NOT NULL,
 	`optiona` varchar(255) NOT NULL,
 	`optionb` varchar(255) NOT NULL,
 	`optionc` varchar(255) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE `current_affair_quiz` (
 
 CREATE TABLE `subject_quiz` (
 	`qid` INT NOT NULL AUTO_INCREMENT,
-	`question` varchar(255) NOT NULL,
+	`question` varchar(500) NOT NULL,
 	`optiona` varchar(255) NOT NULL,
 	`optionb` varchar(255) NOT NULL,
 	`optionc` varchar(255) NOT NULL,
@@ -23,13 +23,13 @@ CREATE TABLE `subject_quiz` (
 
 CREATE TABLE `quiz_subjective` (
 	`qid` INT NOT NULL AUTO_INCREMENT,
-	`question` varchar(255) NOT NULL,
+	`question` varchar(500) NOT NULL,
 	PRIMARY KEY (`qid`)
 );
 
 CREATE TABLE `current_affair_subjective` (
 	`qid` INT NOT NULL AUTO_INCREMENT,
-	`question` varchar(255) NOT NULL,
+	`question` varchar(500) NOT NULL,
 	PRIMARY KEY (`qid`)
 );
 
