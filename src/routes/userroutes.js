@@ -1,6 +1,5 @@
 const express = require('express');
 const connection = require('../db/models');
-const nl2br  = require('nl2br');
 
 const router = express.Router()
 

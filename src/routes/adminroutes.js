@@ -59,6 +59,9 @@ router.post('/dashboard/add-quiz', (req,res) =>{
     let {question, optionA, optionB, optionC, optionD, answer} = req.body;
     
     question = question.replace(/\,/g,"@");
+    question = question.replace(/\'/g,"$");
+    question = question.replace(/\`/g,"#");
+    question = question.replace(/\’/g,"^");
     optionA = optionA.replace(/\,/g,"@");
     optionB = optionB.replace(/\,/g,"@");
     optionC = optionC.replace(/\,/g,"@");
@@ -76,10 +79,14 @@ router.post('/dashboard/add-current-affairs', (req,res) =>{
     let {question, optionA, optionB, optionC, optionD, answer} = req.body;
     
     question = question.replace(/\,/g,"@");
+    question = question.replace(/\'/g,"$");
+    question = question.replace(/\`/g,"#");
+    question = question.replace(/\’/g,"^");
     optionA = optionA.replace(/\,/g,"@");
     optionB = optionB.replace(/\,/g,"@");
     optionC = optionC.replace(/\,/g,"@");
     optionD = optionD.replace(/\,/g,"@");
+    console.log(question);
     
     const sql = "INSERT INTO current_affair_quiz (question, optiona, optionb, optionc, optiond, answer) VALUES ('"+ question +"', '"+ optionA +"', '"+ optionB +"','"+ optionC +"','"+ optionD +"','"+ answer +"')";
     connection.query(sql, function (err, result) {

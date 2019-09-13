@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const adminroutes = require("./routes/adminroutes");
 const userroutes = require("./routes/userroutes");
+const connection = require('./db/models');
 
 const app = express();
 const port = process.env.PORT || 3000
@@ -34,9 +35,20 @@ app.use("/admin-login", adminroutes)
 //user-routes
 app.use("/take-quiz", userroutes)
 
-// app.get('/take-quiz/past-questions', (req,res) =>{
-//   res.render('past-questions');
-// });
+app.get('/past-questions', (req,res) =>{
+  
+  const sql = 'SELECT Date FROM current_affair_quiz ORDER BY Date ';
+  connection.query(sql, function (error, results, fields) {
+      if (error){
+          throw error;
+      }else{
+        var demodate = results[0].Date.toDateString();
+        demodate = demodate.split(" ");
+        console.log(demodate);
+        res.render('past-questions');
+      }    
+  });
+});
 
 const server = app.listen(port, (req, res) => {
     console.log(`Server started at port ${port}..`)

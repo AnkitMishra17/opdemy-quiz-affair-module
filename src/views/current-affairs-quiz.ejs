@@ -90,11 +90,17 @@ input{
               <% if(question[0].includes("\n")) { %>
                <% split = question[0].split("\n"); %>                   
                <% for(i=0;i< split.length;i++){ %>
-                <% split[i] = split[i].replace(/\@/g,",") %>
+                <% split[i] = split[i].replace(/\@/g,",") %>             
+                <% split[i] = split[i].replace(/\$/g,"'") %>
+                <% split[i] = split[i].replace(/\^/g,"’") %>
+                <% split[i] = split[i].replace(/\#/g,"`") %>
                            <p class="card-text font-weight-bold" style="font-size: 20px"><%= split[i] %></p>
                  <% } %>
                  <%  }else{ %>
-                  <% question1 = question[0].replace(/\@/g,",") %> 
+                  <% question1 = question[0].replace(/\@/g,",") %>               
+                  <% question1 = question[0].replace(/\$/g,"'") %>
+                  <% question1 = question[0].replace(/\^/g,"’") %>               
+                  <% question1 = question[0].replace(/\#/g,"`") %>
                 <p class="card-text font-weight-bold" style="font-size: 20px"><%= question1 %></p>
                 <%  } %>
             </div>
@@ -157,7 +163,10 @@ input{
 
   
   for(let i=0; i< questions.length;i++){
-    questions[i] = questions[i].replace(/\@/g,",");
+    questions[i] = questions[i].replace(/\@/g,",");               
+    questions[i] = questions[i].replace(/\$/g,"'");
+    questions[i] = questions[i].replace(/\^/g,"’");               
+    questions[i] = questions[i].replace(/\#/g,"`");
     optiona[i] = optiona[i].replace(/\@/g,",");
     optionb[i] = optionb[i].replace(/\@/g,",");
     optionc[i] = optionc[i].replace(/\@/g,",");  
@@ -167,7 +176,6 @@ input{
   let useranswers = new Array();
   $('#next').on('click',(e)=>{
   if(j <= questions.length){
-    console.log('else');
     let no_prompt = check();
     if(no_prompt == true){
       let k = j++;
