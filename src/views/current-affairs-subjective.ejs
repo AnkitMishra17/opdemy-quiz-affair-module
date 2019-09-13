@@ -35,10 +35,19 @@
                   <div class="card-body">
                       <% if(data[i].question.includes("\n")) { %>
                         <% let split = data[i].question.split("\n"); %>
-                        <% for(let j = 0; j < split.length; j++) {  %>
+                        <% for(let j = 0; j < split.length; j++) {  %>            
+                        <% split[j] = split[j].replace(/\@/g,",") %>             
+                        <% split[j] = split[j].replace(/\$/g,"'") %>
+                        <% split[j] = split[j].replace(/\^/g,"’") %>
+                        <% split[j] = split[j].replace(/\#/g,"`") %>
                             <p class="card-text font-weight-bold" style="font-size: 20px"><%= split[j] %></p>
                         <% } %>
                       <% }else { %>
+                        
+                  <% data[i].question = data[i].question.replace(/\@/g,",") %>               
+                  <% data[i].question = data[i].question.replace(/\$/g,"'") %>
+                  <% data[i].question = data[i].question.replace(/\^/g,"’") %>               
+                  <% data[i].question = data[i].question.replace(/\#/g,"`") %>
                     <p class="card-text font-weight-bold" style="font-size: 20px"><%= data[i].question %></p>
                   <% } %>
                   </div>

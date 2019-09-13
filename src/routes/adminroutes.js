@@ -95,7 +95,13 @@ router.post('/dashboard/add-current-affairs', (req,res) =>{
   });
 
 router.post('/dashboard/add-quiz-subjective', (req,res) =>{
-    const {question} = req.body;
+    let {question} = req.body;
+
+    question = question.replace(/\,/g,"@");
+    question = question.replace(/\'/g,"$");
+    question = question.replace(/\`/g,"#");
+    question = question.replace(/\’/g,"^");
+
     const sql = "INSERT INTO quiz_subjective (question) VALUES ('"+ question +"')";
     connection.query(sql, function (err, result) {
       if (err) throw err;
@@ -105,7 +111,13 @@ router.post('/dashboard/add-quiz-subjective', (req,res) =>{
   });
 
 router.post('/dashboard/add-current-affairs-subjective', (req,res) =>{
-    const {question} = req.body;
+    let {question} = req.body;
+    
+    question = question.replace(/\,/g,"@");
+    question = question.replace(/\'/g,"$");
+    question = question.replace(/\`/g,"#");
+    question = question.replace(/\’/g,"^");
+
     const sql = "INSERT INTO current_affair_subjective (question) VALUES ('"+ question +"')";
     connection.query(sql, function (err, result) {
       if (err) throw err;
